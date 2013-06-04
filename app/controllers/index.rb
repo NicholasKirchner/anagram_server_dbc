@@ -6,3 +6,12 @@ get '/:word' do
   @anagrams = DictionaryWord.anagrams(@word)
   erb :index
 end
+
+post '/' do 
+  word = params[:dictionary_word]
+  redirect "/#{word}"
+end
+
+get '/' do 
+  erb :index
+end
