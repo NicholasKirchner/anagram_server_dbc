@@ -1,0 +1,8 @@
+<div class="container">
+ <%=  "Here's a list of anagrams for #{@word}" %>
+<ul>
+ <% @anagrams.each do |anagram| %>
+  <li><%= anagram %></li>
+ <% end %>
+</ul>
+</div>
