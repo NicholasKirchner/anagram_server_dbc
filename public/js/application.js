@@ -4,6 +4,7 @@ $(document).ready(function() {
     var string = $("form").serialize();
     console.log(string);
     var request = $.post('/', string);
+    $('.anagram-result').children().remove();
     $('.results').append('<p class="search">Searching...</p>');
     request.done(function(responseText) { 
       $('.results').children().remove('.search');
