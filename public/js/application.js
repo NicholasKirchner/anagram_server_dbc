@@ -4,7 +4,9 @@ $(document).ready(function() {
     var string = $("form").serialize();
     console.log(string);
     var request = $.post('/', string);
+    $('.results').append('<p class="search">Searching...</p>');
     request.done(function(responseText) { 
+      $('.results').children().remove('.search');
       var results = $.parseJSON(responseText);
       for (var i in results){
         $('.anagram-result').append('<li>' + results[i]['dictionary_word']['word'] + '</li>');
