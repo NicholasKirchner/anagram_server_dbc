@@ -1,22 +1,18 @@
 require 'debugger'
 class DictionaryWord < ActiveRecord::Base
-  # Remember to create a migration!
-
-  # def self.anagrams(word)
-  #   letters = word.downcase.split('').sort
-  #   results = []
-  #   self.find_each do |other_word|
-  #     results << other_word if letters == other_word.word.downcase.split('').sort
-  #   end
-  #   results
-  # end
+  
+  before_save :generate_anagram
 
   def self.anagrams(word)
-    letters = word.downcase.split('').sort
-    results = []
-    self.all.each do |other_word|
-      results << other_word if letters == other_word.word.downcase.split('').sort
-    end
+    letters = word.downcase.split('').sort.join
+    results = self.find(:all, :conditions => ["anagram = ?", letters])
     results
+  end
+
+
+  private
+
+  def generate_anagram
+    self.anagram = self.word.split('').sort.join
   end
 end
