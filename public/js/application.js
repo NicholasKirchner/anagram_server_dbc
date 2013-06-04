@@ -1,11 +1,15 @@
 $(document).ready(function() {
-  $('.results').hide();
+  $('anagram-result').children().remove();
   $('form').submit(function() { 
     var string = $("form").serialize();
     console.log(string);
     var request = $.post('/', string);
-    request.done(function(responseText) { console.log(responseText); })
-    $('.results').show();
+    request.done(function(responseText) { 
+      var results = $.parseJSON(responseText);
+      for (var i in results){
+        $('.anagram-result').append('<li>' + results[i]['dictionary_word']['word'] + '</li>');
+      }
+       })
     return false;
   });
   // This is called after the document has loaded in its entirety
