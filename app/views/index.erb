@@ -6,12 +6,6 @@
     <input type="submit" value="find anagrams">
   </div>
 
-<% if @anagrams %>
- <%=  "Here's a list of anagrams for #{@word}" %>
-<ul>
- <% @anagrams.each do |anagram| %>
-  <li><%= anagram.word %></li>
- <% end %>
- <% end %>
-</ul>
+  <div class="results">
+  </div>
 </div>
