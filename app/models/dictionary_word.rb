@@ -15,7 +15,7 @@ class DictionaryWord < ActiveRecord::Base
     letters = word.downcase.split('').sort
     results = []
     self.all.each do |other_word|
-      results << other_word.word if letters == other_word.word.downcase.split('').sort
+      results << other_word if letters == other_word.word.downcase.split('').sort
     end
     results
   end
